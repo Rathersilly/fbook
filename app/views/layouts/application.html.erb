@@ -11,6 +11,21 @@
   </head>
 
   <body>
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <aside class="is-pulled-right">
+      <strong>Params:</strong>
+      <% params.each do |k,v| %>
+
+
+        <p><%= "#{k} => #{v}" %></p>
+      <% end %>
+    </aside>
+    <%# maybe delete this notification or improve it idk 
+    <div class="notification is-invisible">
+      <button class="delete:"></button>
+      <p>hfkdslfhjklasdfkls</p>
+      </div>%>
+
   </body>
 </html>
