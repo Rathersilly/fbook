@@ -12,6 +12,9 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <% flash.each do |msg_type,msg| %>
+      <%= content_tag(:div, "Flash: #{msg_type} #{msg}", class:"message") %>      
+    <% end %>
     <%= yield %>
     <aside class="is-pulled-right">
       <strong>Params:</strong>
@@ -20,6 +23,11 @@
 
         <p><%= "#{k} => #{v}" %></p>
       <% end %>
+      <br> <br>
+      <strong>debug(params):</strong>
+
+      <%= debug(params) %>
+
     </aside>
     <%# maybe delete this notification or improve it idk 
     <div class="notification is-invisible">

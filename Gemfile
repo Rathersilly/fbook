@@ -65,3 +65,7 @@ gem "rexml", ">= 3.2.5"
 gem "colorize", "~> 0.8.1"
 
 gem "faker", "~> 2.17"
+
+# font-awesome-rails seems not up to date - uses deprecated fa instead of fas
+# gem "font-awesome-rails", "~> 4.7"
+gem 'font-awesome-sass', '~> 5.15.1'

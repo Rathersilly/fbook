@@ -3,9 +3,20 @@ class UsersController < ApplicationController
     @users = User.all
   end
   def new
+    @user = User.new
 
   end
   def create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "Signup successful!"
+      redirect_to root_url
+    else
+      flash[:warning] = "Signup failed!"
+      render 'new'
+    end
+
+
   end
   def edit
   end
@@ -14,5 +25,11 @@ class UsersController < ApplicationController
   def show
   end
   def destroy
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name,:email,:password,:password_confirmation)
   end
 end
