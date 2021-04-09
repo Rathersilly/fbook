@@ -1,6 +1,7 @@
 <div class="signup-form">
 
   <%= form_with(model: @user) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <%# bulma bits from here: https://bulma.io/documentation/form/general/ %>
     <div class="field">
       <%= f.label "Name: ", class: "label" %>

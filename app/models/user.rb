@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :passive_friends, through: :passive_friendships, source: :user
   has_secure_password
 
+  def User.digest(string)
+    BCrypt::Password.create(string)
+  end
   def friends
     #active_friends + passive_friends
     puts "hi"
@@ -13,6 +16,6 @@ class User < ApplicationRecord
 
   end
   def befriend(user)
-    active_friends.create(friend_id: user.id)
+    active_friendships.create(friend_id: user.id)
   end
 end

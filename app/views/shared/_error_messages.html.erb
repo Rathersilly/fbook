@@ -1,0 +1,18 @@
+<%# object.errors.inspect %>
+<% if object.errors.any? %>
+  <%# object.errors.inspect %>
+
+  <article class="message is-danger">
+    <div class="message-header">
+      <div>"Error signing up:"</div>
+      <button class="delete" aria-label="delete"></button>
+    </div>
+    <% object.errors.full_messages.each do |msg|  %>
+      <div class="message-body">
+        <%= content_tag :div, msg  %>
+      </div>
+    <% end %>
+  </article>
+<% end %>
+
+

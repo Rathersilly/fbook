@@ -12,8 +12,15 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <% flash.each do |msg_type,msg| %>
-      <%= content_tag(:div, "Flash: #{msg_type} #{msg}", class:"message") %>      
+    <% if flash.any? %>
+      <% flash.each do |msg_type,msg| %>
+        <%= content_tag :div, class: "message is-#{msg_type}" do %>
+        <%= content_tag :div, class: "message-header " do %>
+          <%= "Flash: #{msg_type} #{msg}" %>
+        <% end %>
+        <% end %>
+      <% end %>
+
     <% end %>
     <%= yield %>
     <aside class="is-pulled-right">
@@ -30,10 +37,10 @@
 
     </aside>
     <%# maybe delete this notification or improve it idk 
-    <div class="notification is-invisible">
-      <button class="delete:"></button>
-      <p>hfkdslfhjklasdfkls</p>
-      </div>%>
+      <div class="notification is-invisible">
+    <button class="delete:"></button>
+    <p>hfkdslfhjklasdfkls</p>
+    </div>%>
 
   </body>
 </html>
