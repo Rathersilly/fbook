@@ -2,7 +2,7 @@ module SessionsHelper
   def log_in(user)
     session[:user_id] = user.id
     current_user
-    puts "#{@user} is logged in".green
+    puts "User #{@user.id} (#{@user.name}, #{@user.email}) is logged in".green
   end
   
   def log_out

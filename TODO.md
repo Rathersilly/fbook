@@ -10,3 +10,6 @@ an easy way to grab just that line and not display the red wall
 the users#add_friend method and the befriend helper method both do the same thing
 they should probably be refactored for dryness
 
+should refresh how to log stuff - puts is nice for immediate debug feedback
+but isnt permanent
+
