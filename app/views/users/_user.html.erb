@@ -1,3 +1,9 @@
+<%# if current_user isnt friends with someone, show befriend button %>
+
+<%= link_to user_path(user.id) do %>
 <p><%= user.name %></p>
 <p><%= user.email %></p>
+<%#= link_to :div,"Befriend", add_friend_path(user), method: :post, class: "button is-link" %>
+
+<% end %>
 <br>

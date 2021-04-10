@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get '/home', to: 'static_pages#home', as: 'home'
   get '/signup', to: 'users#new'
 
+  post '/add_friend', to: 'users#add_friend'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

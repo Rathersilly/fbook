@@ -8,13 +8,11 @@ class User < ApplicationRecord
   def User.digest(string)
     BCrypt::Password.create(string)
   end
-  def friends
-    #active_friends + passive_friends
-    puts "hi"
-    #active_friends.merge(passive_friends)
-    active_friends + passive_friends
 
+  def friends
+    active_friends + passive_friends
   end
+
   def befriend(user)
     active_friendships.create(friend_id: user.id)
   end

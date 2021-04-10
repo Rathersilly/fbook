@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
   end
   test "password present and acceptable" do
   end
-  test "user can befriendby each other" do
+  test "users can befriendby each other" do
     user1 = users(:user_1)
     user2 = users(:user_2)
     user1.befriend(user2)
