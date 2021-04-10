@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[add_friend edit update show destroy]
+  before_action :set_user, only: %i[edit update show destroy]
   def index
     @users = User.all
   end
@@ -29,9 +29,15 @@ class UsersController < ApplicationController
   end
 
   def add_friend
-    
-    current_user.active_friendships.create(friend_id: params[:id])
-    redirect_to root_path
+    friend = User.find_by(id: params[:friend_id])
+    if !current_user.friends.include?(friend)
+      current_user.active_friendships.create!(friend_id: friend.id)
+      flash[:success] = "#{friend.name} is now your friend!" 
+      redirect_to root_path
+    else
+      flash[:warning] = "#{friend.name} is already your friend"
+      redirect_to root_path
+    end
   end
 
   private

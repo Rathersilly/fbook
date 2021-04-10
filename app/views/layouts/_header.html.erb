@@ -5,8 +5,8 @@
   <div class="navbar-menu">
     <div class="navbar-end">
       <%= link_to "Sign up", signup_path, class: "navbar-item button is-link" %>
-      <%= link_to "Log in", help_path, class: "navbar-item button is-info" %>
-      <%= link_to "Log out", help_path, class: "navbar-item button is-success" %>
+      <%= link_to "Log in", login_path, class: "navbar-item button is-info" %>
+      <%= link_to "Log out", logout_path, method: :delete, class: "navbar-item button is-success" %>
       <%= link_to "Help", help_path, class: "navbar-item button is-warning" %>
       <%= link_to "Help", help_path, class: "navbar-item button is-danger" %>
 

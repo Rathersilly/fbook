@@ -15,27 +15,52 @@
     <% if flash.any? %>
       <% flash.each do |msg_type,msg| %>
         <%= content_tag :div, class: "message is-#{msg_type}" do %>
-        <%= content_tag :div, class: "message-header " do %>
-          <%= "Flash: #{msg_type} #{msg}" %>
-        <% end %>
+          <%= content_tag :div, class: "message-header " do %>
+            <%= "Flash: #{msg_type} #{msg}" %>
+          <% end %>
         <% end %>
       <% end %>
 
     <% end %>
-    <%= yield %>
-    <aside class="is-pulled-right">
-      <strong>Params:</strong>
-      <% params.each do |k,v| %>
-
-
-        <p><%= "#{k} => #{v}" %></p>
-      <% end %>
-      <br> <br>
-      <strong>debug(params):</strong>
-
-      <%= debug(params) %>
-
+    <aside class="is-pulled-left">
+      <div>
+        <strong>Dev controls:</strong>
+        <br>
+        <strong>Log in as:</strong>
+        <% User.first(5).each do |user| %>
+          <p><%= link_to user.name, admin_login_path(id: user.id), method: :post %></p>
+        <% end %>
+      </div>
     </aside>
+
+    <aside class="is-pulled-right">
+      <div>
+        <strong>Session:</strong>
+        <% if logged_in? %>
+          <p><%= @current_user.name %></p>
+          <p><%= @current_user.email %></p>
+          <p><%= @current_user %></p>
+        <% else %>
+          <p>(nobody logged in)</p>
+        <% end %>
+      </div>
+
+      <div>
+        <strong>Params:</strong>
+        <% params.each do |k,v| %>
+          <p><%= "#{k} => #{v}" %></p>
+        <% end %>
+        <br> <br>
+      </div>
+      <div>
+        <strong>debug(params):</strong>
+
+        <%= debug(params) %>
+      </div>
+    </aside>
+    <div class="main-body container">
+      <%= yield %>
+    </div>
     <%# maybe delete this notification or improve it idk 
       <div class="notification is-invisible">
     <button class="delete:"></button>
