@@ -8,7 +8,7 @@ asdf:
 zxcv:
   name: "zxcv"
   email: "zxcv@example.com"
-  password_digest: <%= User.digest("xzcv") %>
+  password_digest: <%= User.digest("asdf") %>
 
 <% 5.times do |i| %>
 user_<%= "#{i}:" %>

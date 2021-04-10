@@ -3,7 +3,6 @@ module SessionsHelper
     session[:user_id] = user.id
     current_user
     puts "#{@user} is logged in".green
-    puts "#{@current_user} is logged in".green
   end
   
   def log_out
