@@ -12,4 +12,3 @@ they should probably be refactored for dryness
 
 should refresh how to log stuff - puts is nice for immediate debug feedback
 but isnt permanent
-

@@ -2,14 +2,21 @@
 
 <%= link_to user_path(user.id) do %>
   <div class="user-container">
+    <div>
     <p class="name"><%= user.name %></p>
     <p class="email"><%= user.email %></p>
-    <% if logged_in? && !@current_user.friends.include?(user) %>
-      <%= link_to "Add friend!",add_friend_path(friend_id: user.id),
-                                method: :post,
-                                class: "button is-link is-pulled-right" %>
-    <% else %>
-      <p>This is your friend!</p>
+    </div>
+    <% if logged_in? %>
+      <%  if !@current_user.friends.include?(user) %>
+        <%= link_to "Add friend!",add_friend_path(friend_id: user.id),
+          method: :post,
+          class: "button is-link is-pulled-right" %>
+      <% else %>
+        <%# link_to "Remove friend!",_friend_path(friend_id: user.id),
+          method: :delete,
+          class: "button is-link is-pulled-right" %>
+        <p>This is your friend!</p>
+      <% end %>
     <% end %>
   </div>
   <%#= link_to :div,"Befriend", add_friend_path(user), method: :post, class: "button is-link" %>

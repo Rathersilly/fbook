@@ -15,3 +15,11 @@ User.create!(name: "alice", email: "alice@example.com",
 User.create!(name: "bob", email: "bob@example.com",
              password: "asdf",
              password_confirmation: "asdf")
+
+5.times do |i|
+User.create!(name: "user-#{i}", email: "user-#{i}@example.com",
+             password: "asdf",
+             password_confirmation: "asdf")
+end
+
+
