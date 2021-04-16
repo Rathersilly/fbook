@@ -14,12 +14,41 @@ class UserTest < ActiveSupport::TestCase
     user1 = users(:user_1)
     user2 = users(:user_2)
     user1.befriend(user2)
+    user1.reload
+    user2.reload
     assert user1.active_friends.include?(user2)
+    assert user1.friends.include?(user2)
     assert_not user1.passive_friends.include?(user2)
     assert user2.passive_friends.include?(user1)
     assert_not user2.active_friends.include?(user1)
-    assert user1.friends.include?(user2)
     assert user2.friends.include?(user1)
   end
+
+  test "users can unfriend each other (active_friendship)" do
+    user1 = users(:user_1)
+    user2 = users(:user_2)
+    user1.befriend(user2)
+    user1.unfriend(user2)
+    assert_not user1.active_friends.include?(user2)
+    assert_not user1.passive_friends.include?(user2)
+    assert_not user2.passive_friends.include?(user1)
+    assert_not user2.active_friends.include?(user1)
+    assert_not user1.friends.include?(user2)
+    assert_not user2.friends.include?(user1)
+  end
+
+  test "users can unfriend each other (passive_friendship)" do
+    user1 = users(:user_1)
+    user2 = users(:user_2)
+    user1.befriend(user2)
+    user2.unfriend(user1)
+    assert_not user1.active_friends.include?(user2)
+    assert_not user1.passive_friends.include?(user2)
+    assert_not user2.passive_friends.include?(user1)
+    assert_not user2.active_friends.include?(user1)
+    assert_not user1.friends.include?(user2)
+    assert_not user2.friends.include?(user1)
+  end
+
 end
 

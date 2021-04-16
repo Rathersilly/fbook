@@ -31,12 +31,27 @@ class UsersController < ApplicationController
   def add_friend
     friend = User.find_by(id: params[:friend_id])
     if !current_user.friends.include?(friend)
-      current_user.active_friendships.create!(friend_id: friend.id)
+      current_user.befriend(friend)
+      #current_user.active_friendships.create!(friend_id: friend.id)
       flash[:success] = "#{friend.name} is now your friend!" 
       redirect_to root_path
     else
       flash[:warning] = "#{friend.name} is already your friend"
       redirect_to root_path
+    end
+  end
+  #alias befriend add_friend
+
+  def remove_friend
+    friend = User.find_by(id: params[:friend_id])
+    if current_user.friends.include?(friend)
+      if current_user.unfriend(friend)
+        flash[:success] = "#{friend.name} is no longer your friend!" 
+        redirect_to root_path
+      else
+        flash[:warning] = "can't find that friendship wtf"
+        redirect_to root_path
+      end
     end
   end
 

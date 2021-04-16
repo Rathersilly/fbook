@@ -9,13 +9,17 @@
 }
 
 .user-container {
-  display: grid;
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
 
 }
-.user-container .name {
-  
+
+.user-container .user-info {
+  //align-self: flex-start;
 }
-.user-container .email {
-  
-  
+
+.user-container .user-buttons {
+  //display: relative;
+  //align-self: flex-end;
 }

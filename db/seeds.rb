@@ -22,4 +22,9 @@ User.create!(name: "user-#{i}", email: "user-#{i}@example.com",
              password_confirmation: "asdf")
 end
 
+num_users = User.count
+User.all.each do |user|
+  #user.befriend 
+end
+
 
