@@ -16,9 +16,8 @@ class UsersController < ApplicationController
       flash.now[:warning] = "Signup failed!"
       render 'new'
     end
-
-
   end
+
   def edit
   end
   def update
@@ -28,12 +27,16 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def add_friend
+  def request_friend
     friend = User.find_by(id: params[:friend_id])
     if !current_user.friends.include?(friend)
-      current_user.befriend(friend)
-      #current_user.active_friendships.create!(friend_id: friend.id)
-      flash[:success] = "#{friend.name} is now your friend!" 
+      puts "DEBUG".red
+      puts current_user.inspect
+      puts friend.inspect
+      freq = Freq.create(user_id: current_user.id, friend_id: friend.id,
+                                      request_message: "Please be my friend!",
+                                      status: :sent)
+      flash[:success] = "Friend request sent to #{friend.name}!"
       redirect_to root_path
     else
       flash[:warning] = "#{friend.name} is already your friend"

@@ -7,11 +7,15 @@ class User < ApplicationRecord
             dependent: :destroy
   has_many :passive_friendships, class_name: "Friendship",
             foreign_key: :friend_id, dependent: :destroy
-  # 90% sure this cant work - moved functionality to methods instead
    has_many :active_friends, class_name: "User",
              through: :active_friendships, source: :friend
-   has_many :passive_friends,# class_name: "User",
+   has_many :passive_friends,
              through: :passive_friendships, source: :user
+
+   has_many :active_freqs, class_name: "Freq",
+            dependent: :destroy
+   has_many :passive_freqs, class_name: "Freq",
+            foreign_key: :friend_id, dependent: :destroy
 
   has_secure_password
 
@@ -36,8 +40,13 @@ class User < ApplicationRecord
     passive_friends
   end
 =end
+  def freqs
+     active_freqs.or(passive_freqs)
+  end
 
   def friends
+    #TODO change this to merge(or) like freqs above
+    #dont want to change now cuz it works
     active_friends + passive_friends
   end
 

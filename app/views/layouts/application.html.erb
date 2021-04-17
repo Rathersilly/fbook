@@ -58,7 +58,10 @@
         <%= debug(params) %>
       </div>
     </aside>
+
+
     <div class="main-body container">
+      <%= render 'users/freqs' %>
       <%= yield %>
     </div>
     <%# maybe delete this notification or improve it idk 

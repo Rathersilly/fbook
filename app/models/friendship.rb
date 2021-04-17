@@ -11,7 +11,7 @@ class Friendship < ApplicationRecord
   private
   # user and friend must be reloaded for the friends associations to be recognized.
   # i tried this as an after_commit  callback in Friendship model but didnt work
-  # or is it just
+  # NEVERMIND it seems to work just not in tests - in tests we're reloading manually
   def reload_users
     a = User.find(friend_id).reload
     b = User.find(user_id).reload

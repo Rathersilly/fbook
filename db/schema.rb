@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_202521) do
+ActiveRecord::Schema.define(version: 2021_04_17_135001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "freqs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.integer "status"
+    t.string "request_message"
+    t.string "response_message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_freqs_on_friend_id"
+    t.index ["user_id"], name: "index_freqs_on_user_id"
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.bigint "user_id"
@@ -32,5 +44,7 @@ ActiveRecord::Schema.define(version: 2021_04_14_202521) do
     t.string "password_digest"
   end
 
+  add_foreign_key "freqs", "users"
+  add_foreign_key "freqs", "users", column: "friend_id"
   add_foreign_key "friendships", "users", column: "friend_id"
 end

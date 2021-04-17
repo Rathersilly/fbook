@@ -11,7 +11,7 @@
         <%  if @current_user == user %>
           <p>Hey it's you!</p>
         <%  elsif !@current_user.friends.include?(user) %>
-          <%= link_to "Add friend!",add_friend_path(friend_id: user.id),
+          <%= link_to "Add friend!",request_friend_path(friend_id: user.id),
             method: :post,
             class: "button is-link is-pulled-right" %>
         <% else %>
