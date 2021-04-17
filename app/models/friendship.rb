@@ -9,11 +9,18 @@ class Friendship < ApplicationRecord
   end
   
   private
+  # user and friend must be reloaded for the friends associations to be recognized.
+  # i tried this as an after_commit  callback in Friendship model but didnt work
+  # or is it just
   def reload_users
     a = User.find(friend_id).reload
     b = User.find(user_id).reload
     puts "RELOADED"
     pp a
     pp b
+    puts"a friends (#{a.friends.count})".green
+    a.friends.each {|f| puts f.name}
+    puts"b friends (#{b.friends.count})".green
+    b.friends.each {|f| puts f.name}
   end
 end

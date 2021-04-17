@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post '/admin_login', to: 'sessions#admin_login'
 
   post '/add_friend', to: 'users#add_friend'
+  post '/befriend', to: 'users#add_friend'
+  delete '/remove_friend', to: 'users#remove_friend'
+  delete '/unfriend', to: 'users#remove_friend'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

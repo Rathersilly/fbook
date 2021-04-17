@@ -40,8 +40,30 @@ class UserTest < ActiveSupport::TestCase
   test "users can unfriend each other (passive_friendship)" do
     user1 = users(:user_1)
     user2 = users(:user_2)
+    assert user1.friends.count == 0
+    assert user1.active_friends.count == 0
+    assert user1.passive_friends.count == 0
+    assert user2.friends.count == 0
+    assert user2.active_friends.count == 0
+    assert user2.passive_friends.count == 0
     user1.befriend(user2)
+    user1.reload
+    user2.reload
+    assert user1.friends.count == 1
+    assert user1.active_friends.count == 1
+    assert user1.passive_friends.count == 0
+    assert user2.friends.count == 1
+    assert user2.active_friends.count == 0
+    assert user2.passive_friends.count == 1
     user2.unfriend(user1)
+    user1.reload
+    user2.reload
+    assert user1.friends.count == 0
+    assert user1.active_friends.count == 0
+    assert user1.passive_friends.count == 0
+    assert user2.friends.count == 0
+    assert user2.active_friends.count == 0
+    assert user2.passive_friends.count == 0
     assert_not user1.active_friends.include?(user2)
     assert_not user1.passive_friends.include?(user2)
     assert_not user2.passive_friends.include?(user1)

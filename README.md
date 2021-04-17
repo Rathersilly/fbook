@@ -4,6 +4,10 @@ Odin demanded that I create a facebook clone and who am I to refuse?
 
 
 Notes:
+4/17/21 update:
+it seems my reload callback in Fship model works, just not in model test.
+ 
+4/16/21 update:
 spent forever trying to fix a bug in making users recognize their friends
 (esp the active_friendship and active_friend relations, immediately after
 making a new friend)

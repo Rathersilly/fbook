@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # dependent: destroy needed for all?
-  has_many :active_friendships, class_name: "Friendship",foreign_key: :user_id,
+
+  # when foreign:key: :user_id wasnt commented out,
+  # was creating duplicate friendships
+  has_many :active_friendships, class_name: "Friendship",#foreign_key: :user_id,
             dependent: :destroy
   has_many :passive_friendships, class_name: "Friendship",
             foreign_key: :friend_id, dependent: :destroy
