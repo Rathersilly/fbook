@@ -4,12 +4,12 @@ one:
   user: one
   friend: one
   status: 1
-  request_message: MyString
-  response_message: MyString
+  request_message: "Please be my friend!"
+  response_message: nil
 
 two:
   user: two
   friend: two
   status: 1
-  request_message: MyString
-  response_message: MyString
+  request_message: "Please be my friend!"
+  response_message: nil

@@ -27,36 +27,6 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def request_friend
-    friend = User.find_by(id: params[:friend_id])
-    if !current_user.friends.include?(friend)
-      puts "DEBUG".red
-      puts current_user.inspect
-      puts friend.inspect
-      freq = Freq.create(user_id: current_user.id, friend_id: friend.id,
-                                      request_message: "Please be my friend!",
-                                      status: :sent)
-      flash[:success] = "Friend request sent to #{friend.name}!"
-      redirect_to root_path
-    else
-      flash[:warning] = "#{friend.name} is already your friend"
-      redirect_to root_path
-    end
-  end
-  #alias befriend add_friend
-
-  def remove_friend
-    friend = User.find_by(id: params[:friend_id])
-    if current_user.friends.include?(friend)
-      if current_user.unfriend(friend)
-        flash[:success] = "#{friend.name} is no longer your friend!" 
-        redirect_to root_path
-      else
-        flash[:warning] = "can't find that friendship wtf"
-        redirect_to root_path
-      end
-    end
-  end
 
   private
 

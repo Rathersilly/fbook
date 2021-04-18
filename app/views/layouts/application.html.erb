@@ -12,6 +12,8 @@
 
   <body>
     <%= render 'layouts/header' %>
+
+    <!-- Flash -->
     <% if flash.any? %>
       <% flash.each do |msg_type,msg| %>
         <%= content_tag :div, class: "message is-#{msg_type}" do %>
@@ -22,6 +24,8 @@
       <% end %>
 
     <% end %>
+
+    <!-- Dev Controls -->
     <aside class="is-pulled-left">
       <div>
         <strong>Dev controls:</strong>
@@ -33,6 +37,7 @@
       </div>
     </aside>
 
+    <!-- Session info -->
     <aside class="is-pulled-right">
       <div>
         <strong>Session:</strong>
@@ -59,7 +64,7 @@
       </div>
     </aside>
 
-
+    <!-- Main Body -->
     <div class="main-body container">
       <%= render 'users/freqs' %>
       <%= yield %>

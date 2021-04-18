@@ -9,7 +9,7 @@ class User < ApplicationRecord
             foreign_key: :friend_id, dependent: :destroy
    has_many :active_friends, class_name: "User",
              through: :active_friendships, source: :friend
-   has_many :passive_friends,
+   has_many :passive_friends,class_name: "User",
              through: :passive_friendships, source: :user
 
    has_many :active_freqs, class_name: "Freq",
@@ -48,6 +48,11 @@ class User < ApplicationRecord
     #TODO change this to merge(or) like freqs above
     #dont want to change now cuz it works
     active_friends + passive_friends
+    # ok i tried this, but get "relation passed to #or must be structurally compatible"
+    # active_friends.or(passive_friends)
+    # oh and this doesnt work - dont want to return friendships, want to return friends
+    # so to get this to work, have to refresh on joins
+    # x = Friendship.where(user_id: self.id).or(Friendship.where(friend_id: self.id))
   end
 
   def befriend(friend)
@@ -63,7 +68,6 @@ class User < ApplicationRecord
 
   def unfriend(friend)
     # find out if its active or passive?
-
     f = active_friendships.find_by(friend_id: friend.id)
     f ||= passive_friendships.find_by(user_id: friend.id)
     if f

@@ -1,4 +1,22 @@
 class FreqsController< ApplicationController
+
+  def create
+    friend = User.find_by(id: params[:friend_id])
+    if !current_user.friends.include?(friend)
+      puts "DEBUG".red
+      puts current_user.inspect
+      puts friend.inspect
+      freq = Freq.create(user_id: current_user.id, friend_id: friend.id,
+                                      request_message: "Please be my friend!",
+                                      status: :sent)
+      flash[:success] = "Friend request sent to #{friend.name}!"
+      redirect_to root_path
+    else
+      flash[:warning] = "#{friend.name} is already your friend"
+      redirect_to root_path
+    end
+  end
+
   def accept
     freq = Freq.find(params[:freq])
     freq.update(status: :accepted)

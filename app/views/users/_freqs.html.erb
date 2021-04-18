@@ -34,27 +34,28 @@
     </div>
   <% end %>
   <div><%= pp @current_user.freqs.all%></div>
+  <!--
   <p class="">
   Cancelled friend requests:
   </p>
+    <% @current_user.freqs.where(status: :cancelled).each do |freq| %>
 
-  <% @current_user.freqs.where(status: :cancelled).each do |freq| %>
+      <p>From: <%= freq.user.name %></p>
+      <p>To:<%= freq.friend.name %></p>
+      <p>Req msg:<%= freq.request_message %></p>
+      <p><%= freq.status %></p>
 
-    <p>From: <%= freq.user.name %></p>
-    <p>To:<%= freq.friend.name %></p>
-    <p>Req msg:<%= freq.request_message %></p>
-    <p><%= freq.status %></p>
-
-  <% end %>
-  <p class="">
-  Denied friend requests:
-  </p>
-  <% @current_user.freqs.where(status: :denied).each do |freq| %>
-    <p>From: <%= freq.user.name %></p>
-    <p>To:<%= freq.friend.name %></p>
-    <p>Req msg:<%= freq.request_message %></p>
-    <p><%= freq.status %></p>
-  <% end %>
+    <% end %>
+    <p class="">
+    Denied friend requests:
+    </p>
+    <% @current_user.freqs.where(status: :denied).each do |freq| %>
+      <p>From: <%= freq.user.name %></p>
+      <p>To:<%= freq.friend.name %></p>
+      <p>Req msg:<%= freq.request_message %></p>
+      <p><%= freq.status %></p>
+    <% end %>
+  -->
 
 <% end %>
 

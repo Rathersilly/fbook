@@ -3,14 +3,16 @@
 </figure>
 
 <%= content_tag :h1, "#{@user.name}'s Profile" %>
-<%= content_tag :h1, "#{@user.name}'s Friends" %>
-<% if @user.friends.any? %>
-<% @user.friends.each do |friend| %>
-  <%= render 'user', user: friend %>
-<% end %>
-<% else %>
-  <%= content_tag :p, "You don't have any friends?!?" %> 
-<% end %>
+<div class="friend-container is-pulled-left">
+  <%= content_tag :h1, "#{@user.name}'s Friends" %>
+  <% if @user.friends.any? %>
+    <% @user.friends.each do |friend| %>
+      <%= render 'user', user: friend %>
+    <% end %>
+  <% else %>
+    <%= content_tag :p, "You don't have any friends?!?" %> 
+  <% end %>
+</div>
 
 
 
