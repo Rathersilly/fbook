@@ -24,6 +24,8 @@ end
 
 class UserTest < ActiveSupport::TestCase
   def setup
+    user1 = users(:user_1)
+    user2 = users(:user_2)
 
   end
 
@@ -34,8 +36,6 @@ class UserTest < ActiveSupport::TestCase
   test "password present and acceptable" do
   end
   test "users can befriend each other" do
-    user1 = users(:user_1)
-    user2 = users(:user_2)
     assert_not_friends(user1,user2)
     user1.befriend(user2)
     # there is a callback in friendship model to reload,
@@ -46,16 +46,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "users can unfriend each other (active_friendship)" do
-    user1 = users(:user_1)
-    user2 = users(:user_2)
     user1.befriend(user2)
     user1.unfriend(user2)
     assert_not_friends(user1,user2)
   end
 
   test "users can unfriend each other (passive_friendship)" do
-    user1 = users(:user_1)
-    user2 = users(:user_2)
     user1.befriend(user2)
     user1.reload
     user2.reload

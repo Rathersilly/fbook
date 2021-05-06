@@ -25,8 +25,8 @@
 
     <% end %>
 
-    <!-- Dev Controls -->
-    <aside class="is-pulled-left">
+    <aside class="is-pulled-right">
+      <!-- Dev Controls -->
       <div>
         <strong>Dev controls:</strong>
         <br>
@@ -35,10 +35,8 @@
           <p><%= link_to user.name, admin_login_path(id: user.id), method: :post %></p>
         <% end %>
       </div>
-    </aside>
 
-    <!-- Session info -->
-    <aside class="is-pulled-right">
+      <!-- Session info -->
       <div>
         <strong>Session:</strong>
         <% if logged_in? %>
@@ -65,10 +63,11 @@
     </aside>
 
     <!-- Main Body -->
-    <div class="main-body container">
-      <%= render 'users/freqs' %>
-      <%= yield %>
-    </div>
+    <% if logged_in? %> 
+      <%= render 'layouts/home_logged_in' %>
+      <% else %>
+      <%= render 'layouts/home_not_logged_in' %>
+    <% end %>
     <%# maybe delete this notification or improve it idk 
       <div class="notification is-invisible">
     <button class="delete:"></button>

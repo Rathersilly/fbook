@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   def update
   end
   def show
+    @users = User.all
   end
   def destroy
   end
