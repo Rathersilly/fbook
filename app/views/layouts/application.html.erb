@@ -18,10 +18,10 @@
     <%= render 'shared/admin_session_tools' %>
 
     <!-- Main Body -->
-    <% if logged_in? %> 
-      <%= render 'layouts/home_logged_in' %>
-      <% else %>
+    <% if !logged_in? %> 
       <%= render 'layouts/home_not_logged_in' %>
+      <% else %>
+      <%= yield %>
     <% end %>
 
   </body>
