@@ -16,6 +16,7 @@ class User < ApplicationRecord
             dependent: :destroy
    has_many :passive_freqs, class_name: "Freq",
             foreign_key: :friend_id, dependent: :destroy
+   has_many :posts
 
   has_secure_password
 

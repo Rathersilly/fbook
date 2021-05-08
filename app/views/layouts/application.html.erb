@@ -20,8 +20,14 @@
     <!-- Main Body -->
     <% if !logged_in? %> 
       <%= render 'layouts/home_not_logged_in' %>
-      <% else %>
-      <%= yield %>
+    <% else %>
+      <aside class="friend-aside is-pulled-left" >
+        <%= render 'shared/freq_aside' %>
+        <%= render 'shared/friend_aside' %>
+      </aside>
+      <div class="main-body container">
+        <%= yield %>
+      </div>
     <% end %>
 
   </body>

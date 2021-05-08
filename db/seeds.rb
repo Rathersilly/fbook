@@ -9,22 +9,27 @@
 User.create!(name: "asdf", email: "asdf@example.com",
              password: "asdf",
              password_confirmation: "asdf")
-User.create!(name: "alice", email: "alice@example.com",
+User.create!(name: "Alice", email: "alice@example.com",
              password: "asdf",
              password_confirmation: "asdf")
-User.create!(name: "bob", email: "bob@example.com",
+User.create!(name: "Bob", email: "bob@example.com",
              password: "asdf",
              password_confirmation: "asdf")
 
 5.times do |i|
-User.create!(name: "user-#{i}", email: "user-#{i}@example.com",
-             password: "asdf",
-             password_confirmation: "asdf")
+  name = Faker::Name.first_name
+  User.create!(name: name, email: "#{name}-#{i}@example.com",
+               password: "asdf",
+               password_confirmation: "asdf")
 end
 
 num_users = User.count
-User.all.each do |user|
-  #user.befriend 
+users = User.all
+users.each do |user|
+  2.times do 
+    user.befriend users.sample
+  end
+
 end
 
 

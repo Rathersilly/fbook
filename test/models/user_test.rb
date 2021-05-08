@@ -7,8 +7,7 @@ module Minitest::Assertions
     assert user2.passive_friends.include?(user1)
     assert_not user2.active_friends.include?(user1)
     assert user2.friends.include?(user1)
-    assert_equal user1.friends.count, 1
-    assert_equal user2.friends.count, 1
+    assert_not user1.friends.count == 0
   end
   def assert_not_friends(user1,user2)
     assert_not user1.active_friends.include?(user2)
@@ -17,8 +16,6 @@ module Minitest::Assertions
     assert_not user2.active_friends.include?(user1)
     assert_not user1.friends.include?(user2)
     assert_not user2.friends.include?(user1)
-    assert_equal user1.friends.count, 0
-    assert_equal user2.friends.count, 0
   end
 end
 
@@ -49,6 +46,8 @@ class UserTest < ActiveSupport::TestCase
     user1.befriend(user2)
     user1.unfriend(user2)
     assert_not_friends(user1,user2)
+    assert_equal user1.friends.count, 0
+    assert_equal user2.friends.count, 0
   end
 
   test "users can unfriend each other (passive_friendship)" do
@@ -59,6 +58,8 @@ class UserTest < ActiveSupport::TestCase
     user1.reload
     user2.reload
     assert_not_friends(user1,user2)
+    assert_equal user1.friends.count, 0
+    assert_equal user2.friends.count, 0
   end
 
 end

@@ -1,0 +1,6 @@
+<%= form_with model: @post do |f| %>
+  <%= f.label "Content" %>
+  <%= f.text_area :content %>
+  <%= f.submit "Create Post!" %>
+<% end %>
+
