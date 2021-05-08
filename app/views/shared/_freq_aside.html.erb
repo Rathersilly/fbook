@@ -1,0 +1,71 @@
+<% if logged_in? %> <!--prob delete - redundant -->
+
+  <%#TODO: make this only show freqs with certain status %>
+
+  <% if @current_user.passive_freqs.any? %>
+    <div class="freq-container">
+      <p class=""> Friend requests to you: </p>
+      <p class="todo"> Placeholder - put link to make freq</p>
+
+      <% @current_user.passive_freqs.where(status: :sent).each do |freq| %>
+        <div class="">
+          <p><%= freq.user.name %></p>
+          <p><%= freq.request_message %></p>
+          <p><%= freq.status %></p>
+
+          <%= link_to "Accept friend", accept_freq_path(freq: freq),
+            method: :post, class: "button is_link is-success" %>
+          <%= link_to "Deny friend", deny_freq_path(freq: freq),
+          method: :post, class: "button is_link is-danger" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @current_user.active_freqs.any? %>
+
+    <div class="freq-container">
+      <p class=""> Friend requests from you: </p>
+    <% end %>
+    <% @current_user.active_freqs.where(status: :sent).each do |freq| %>
+      <div class="">
+        <p><%= freq.friend.name %></p>
+        <p><%= freq.request_message %></p>
+        <p><%= freq.status %></p>
+
+        <%= link_to "Cancel friend request", cancel_freq_path(freq: freq),
+          method: :post, class: "button is_link is-danger" %>
+      </div>
+
+    <% end %>
+    </div>
+  <!--
+    <div>
+    <p>All Freqs:</p>
+    <%= pp @current_user.freqs.all%>
+    </div>
+    <p class="">
+    Cancelled friend requests:
+    </p>
+    <% @current_user.freqs.where(status: :cancelled).each do |freq| %>
+
+      <p>From: <%= freq.user.name %></p>
+      <p>To:<%= freq.friend.name %></p>
+      <p>Req msg:<%= freq.request_message %></p>
+      <p><%= freq.status %></p>
+
+    <% end %>
+    <p class="">
+    Denied friend requests:
+    </p>
+    <% @current_user.freqs.where(status: :denied).each do |freq| %>
+      <p>From: <%= freq.user.name %></p>
+      <p>To:<%= freq.friend.name %></p>
+      <p>Req msg:<%= freq.request_message %></p>
+      <p><%= freq.status %></p>
+    <% end %>
+  -->
+
+<% end %>
+
+

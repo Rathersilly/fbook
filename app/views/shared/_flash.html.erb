@@ -1,0 +1,11 @@
+<% if flash.any? %>
+  <% flash.each do |msg_type,msg| %>
+    <%= content_tag :div, class: "message is-#{msg_type}" do %>
+      <%= content_tag :div, class: "message-header " do %>
+        <%= "Flash: #{msg_type} #{msg}" %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+

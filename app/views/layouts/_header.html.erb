@@ -5,8 +5,8 @@
   <div class="navbar-menu">
     <div class="navbar-end">
       <% if logged_in? %>
-        <%= link_to "Profile", user_path(@current_user.id), class: "navbar-item button is-success" %>
-        <%= link_to "Log out", logout_path, method: :delete, class: "navbar-item button is-warning" %>
+        <%= link_to "Profile", user_path(@current_user.id), class: "navbar-item button is-link" %>
+        <%= link_to "Log out", logout_path, method: :delete, class: "navbar-item button is-info" %>
         <%= link_to "Help", help_path, class: "navbar-item button is-danger" %>
       <% else %>
         <%= link_to "Sign up", signup_path, class: "navbar-item button is-link" %>

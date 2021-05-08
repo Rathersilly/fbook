@@ -17,12 +17,45 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.todo {
+  background-color: tomato;
+  color:white;
+}
 aside {
   //position: absolute;
-  width: 30%;
+  width: 25vw;
   //right: 0;
 }
-aside div {
+
+.friend-aside div{
+
+}
+.freq-container, .user-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.freq-item, .user-item {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+
+}
+
+
+
+
+.admin-session div {
   border: 3px solid black;
   border-radius: 5px;
   padding: 10px;
@@ -36,5 +69,30 @@ aside div {
 }
 
 .main-body {
-  width: 60%;
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  left:0;
+  right:0;
+  margin:auto;
 }
+
+.center-container {
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+
+}
+
+.welcome {
+  display:flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items:center;
+
+  height: 20vh;
+  width: 30vw;
+}
+
+

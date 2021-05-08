@@ -13,54 +13,9 @@
   <body>
     <%= render 'layouts/header' %>
 
-    <!-- Flash -->
-    <% if flash.any? %>
-      <% flash.each do |msg_type,msg| %>
-        <%= content_tag :div, class: "message is-#{msg_type}" do %>
-          <%= content_tag :div, class: "message-header " do %>
-            <%= "Flash: #{msg_type} #{msg}" %>
-          <% end %>
-        <% end %>
-      <% end %>
+    <%= render 'shared/flash' %>
 
-    <% end %>
-
-    <aside class="is-pulled-right">
-      <!-- Dev Controls -->
-      <div>
-        <strong>Dev controls:</strong>
-        <br>
-        <strong>Log in as:</strong>
-        <% User.first(5).each do |user| %>
-          <p><%= link_to user.name, admin_login_path(id: user.id), method: :post %></p>
-        <% end %>
-      </div>
-
-      <!-- Session info -->
-      <div>
-        <strong>Session:</strong>
-        <% if logged_in? %>
-          <p><%= @current_user.name %></p>
-          <p><%= @current_user.email %></p>
-          <p><%= @current_user %></p>
-        <% else %>
-          <p>(nobody logged in)</p>
-        <% end %>
-      </div>
-
-      <div>
-        <strong>Params:</strong>
-        <% params.each do |k,v| %>
-          <p><%= "#{k} => #{v}" %></p>
-        <% end %>
-        <br> <br>
-      </div>
-      <div>
-        <strong>debug(params):</strong>
-
-        <%= debug(params) %>
-      </div>
-    </aside>
+    <%= render 'shared/admin_session_tools' %>
 
     <!-- Main Body -->
     <% if logged_in? %> 
@@ -68,11 +23,6 @@
       <% else %>
       <%= render 'layouts/home_not_logged_in' %>
     <% end %>
-    <%# maybe delete this notification or improve it idk 
-      <div class="notification is-invisible">
-    <button class="delete:"></button>
-    <p>hfkdslfhjklasdfkls</p>
-    </div>%>
 
   </body>
 </html>
